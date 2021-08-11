@@ -3,7 +3,7 @@ name: publish chart
 on:
   push:
     branches:
-      - master
+      - config-test
     paths:
       - '**/Chart.yaml'
 
