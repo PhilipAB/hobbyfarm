@@ -1,7 +1,7 @@
 admin:
-  image: hobbyfarm/admin-ui:v0.2.4
+  image: hobbyfarm/admin-ui:v0.2.5
 ui:
-  image: hobbyfarm/ui:v0.4.7
+  image: hobbyfarm/ui:v0.4.8
   # configMapName: ui-config
   # config:
     # title: Old MacDonald's Farm
@@ -11,7 +11,7 @@ ui:
       # background: /assets/default/login_container_farm.svg
     # logo: /assets/default/logo.svg
 gargantua:
-  image: hobbyfarm/gargantua:v0.2.0
+  image: hobbyfarm/gargantua:v0.2.1
   logLevel: "0"
   dynamicBaseNamePrefix: "dynamic"
   scheduledBaseNamePrefix: "scheduled"
