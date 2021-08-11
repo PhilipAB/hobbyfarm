@@ -6,11 +6,11 @@ metadata:
 data:
   config.json: |
     {
-        "title": {{ $.Values.ui.config.title }},
-        "favicon": {{ $.Values.ui.config.favicon }},
+        "title": {{ $.Values.ui.config.title | quote }},
+        "favicon": {{ $.Values.ui.config.favicon | quote }},
         "login": {
-            "logo": {{ $.Values.ui.config.login.logo }},
-            "background": {{ $.Values.ui.config.login.background }}
+            "logo": {{ $.Values.ui.config.login.logo | quote }},
+            "background": {{ $.Values.ui.config.login.background | quote }}
         },
-        "logo": {{ $.Values.ui.config.logo }}
+        "logo": {{ $.Values.ui.config.logo | quote }}
     }
