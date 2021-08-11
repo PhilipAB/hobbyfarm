@@ -7,9 +7,9 @@ entries:
     digest: d8f1eb74cc3204bffad5803fab2dc9836bc79282713abfb470947d50c554823a
     name: hobbyfarm
     sources:
-    - https://github.com/hobbyfarm
+    - https://github.com/PhilipAB/hobbyfarm
     urls:
-    - https://github.com/hobbyfarm/hobbyfarm/releases/download/hobbyfarm-0.3.1/hobbyfarm-0.3.1.tgz
+    - https://github.com/PhilipAB/hobbyfarm/archive/refs/tags/hobbyfarm-test-0.3.1.tar.gz
     version: 0.3.1
   - apiVersion: v1
     created: "2021-06-09T16:31:02.709955345Z"
