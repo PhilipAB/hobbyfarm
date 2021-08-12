@@ -33,21 +33,11 @@ spec:
             - name: config
               mountPath: /usr/share/nginx/html/config.json
               subPath: config.json
-            - name: customdir
-              mountPath: /usr/share/nginx/html/custom-styles
-            - name: customfile
-              mountPath: /usr/share/nginx/html/custom-styles/custom.css
+            - name: config
+              mountPath: /usr/share/nginx/html/custom.css
+              subPath: custom.css
       volumes:
         - name: config
           configMap: 
             name: {{ $.Values.ui.configMapName }}
-        - name: customdir
-          hostPath:
-            # Ensure the file directory is created.
-            path: /root/custom
-            type: DirectoryOrCreate
-        - name: customfile
-          hostPath:
-            path: /root/custom/custom.css
-            type: FileOrCreate
       {{- end }}
