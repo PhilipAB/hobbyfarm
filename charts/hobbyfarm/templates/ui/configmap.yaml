@@ -16,4 +16,4 @@ data:
     }
     }
   custom.css: |-
-    {{ tpl $.Values.ui.custom }}
+    {{ tpl $.Values.ui.custom . }}
