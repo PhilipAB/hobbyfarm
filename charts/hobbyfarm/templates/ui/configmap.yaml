@@ -15,4 +15,4 @@ data:
         "logo": {{ $.Values.ui.config.logo | quote }}
     }
   custom.css: |-
-    {{ $.Values.ui.custom }}
+    {{ $.Values.ui.custom | quote }}
