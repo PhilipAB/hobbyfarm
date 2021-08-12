@@ -14,5 +14,4 @@ data:
         },
         "logo": {{ $.Values.ui.config.logo | quote }}
     }
-  custom.css: |
-    {{ $.Values.ui.custom }}
+  custom.css: {{ $.Values.ui.custom | quote }}
