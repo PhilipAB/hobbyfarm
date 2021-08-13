@@ -4,6 +4,7 @@ metadata:
   namespace: hobbyfarm
   name: ui-config
 data:
+  {{ if $.Values.ui.config -}}
   config.json: |
     {
         "title": {{ $.Values.ui.config.title | quote }},
@@ -14,4 +15,7 @@ data:
         },
         "logo": {{ $.Values.ui.config.logo | quote }}
     }
+  {{- end }}
+  {{ if $.Values.ui.custom -}}
   custom.css: {{ $.Values.ui.custom | quote }}
+  {{- end }}
