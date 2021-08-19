@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         component: admin-ui
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/admin-ui/configmap.yaml") . | sha256sum }}
     spec:
       containers:
         - name: admin-ui
@@ -26,3 +28,20 @@ spec:
               {{ else }}
               value: gargantua
               {{ end }}
+      {{- if $.Values.admin.configMapName }}
+          volumeMounts:
+            {{ if $.Values.admin.config }}
+            - name: config
+              mountPath: /usr/share/nginx/html/config.json
+              subPath: config.json
+            {{ end }}
+            {{ if $.Values.admin.custom }}
+            - name: config
+              mountPath: /usr/share/nginx/html/custom.css
+              subPath: custom.css
+            {{ end }}
+      volumes:
+        - name: config
+          configMap: 
+            name: {{ $.Values.admin.configMapName }}
+      {{- end }}
