@@ -4,9 +4,10 @@ metadata:
   name: guac
   namespace: {{ .Release.Namespace }}
 spec:
+  type: NodePort
   selector:
     component: guac
-  type: ClusterIP
   ports:
     - name: http
       port: 4567
+      nodeport: 30008
