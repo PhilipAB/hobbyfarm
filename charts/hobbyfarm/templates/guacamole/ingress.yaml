@@ -1,4 +1,4 @@
-{{ if $.Values.ingress.enabled }}
+{{ if $.Values.ingress.hostnames.guac }}
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
@@ -10,7 +10,7 @@ metadata:
   {{- end }}
 spec:
   rules:
-  - host: {{ $.Values.ingress.hostnames.backend }}
+  - host: {{ $.Values.ingress.hostnames.guac }}
     http:
       paths:
       - backend:
@@ -19,9 +19,9 @@ spec:
 {{ if $.Values.ingress.tls.enabled }}
   tls:
   - hosts:
-    - {{ $.Values.ingress.hostnames.backend }}
-{{- if hasKey .Values.ingress.tls.secrets "backend" }}
-    secretName: {{ $.Values.ingress.tls.secrets.backend }}
+    - {{ $.Values.ingress.hostnames.guac }}
+{{- if hasKey .Values.ingress.tls.secrets "guac" }}
+    secretName: {{ $.Values.ingress.tls.secrets.guac }}
 {{- end }}
 {{ end }}
 {{ end }}
