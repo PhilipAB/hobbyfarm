@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: guac
-          image: jggoebel/guac:latest
+          image: {{ $.Values.guac.image }}

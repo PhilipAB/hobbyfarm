@@ -28,6 +28,9 @@ gargantua:
 shell:
   replicas: 1
 
+guac: 
+  image: jggoebel/guac:latest
+
 # use insecure protocols (e.g., for local development)
 insecure: false
 
