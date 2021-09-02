@@ -15,7 +15,7 @@ spec:
       paths:
       - backend:
           serviceName: guac
-          servicePort: 4567
+          servicePort: 80
 {{ if $.Values.ingress.tls.enabled }}
   tls:
   - hosts:
