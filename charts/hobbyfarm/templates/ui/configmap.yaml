@@ -23,7 +23,7 @@ data:
             {
                 {{ "title" | quote | indent 4}}: {{ $val.title | quote }},
                 {{ "url" | quote | indent 4}}: {{ $val.url | quote }}
-            }{{ if ne ($index add1) len $.Values.ui.config.about.buttons }},{{ end }}
+            }{{ if ne ($index add1) (len $.Values.ui.config.about.buttons) }},{{ end }}
             {{- end }}
             ]
             {{- end }}
