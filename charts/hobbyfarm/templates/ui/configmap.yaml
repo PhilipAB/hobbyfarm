@@ -13,7 +13,11 @@ data:
             "logo": {{ $.Values.ui.config.login.logo | quote }},
             "background": {{ $.Values.ui.config.login.background | quote }}
         },
-        "logo": {{ $.Values.ui.config.logo | quote }}
+        "logo": {{ $.Values.ui.config.logo | quote }},
+        "about": {
+            "title": {{ $.Values.ui.config.about.title | quote }},
+            "body": {{ $.Values.ui.config.about.body | quote }}
+        },
     }
   {{- end }}
   {{ if $.Values.ui.custom -}}
