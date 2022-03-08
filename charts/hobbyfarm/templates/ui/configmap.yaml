@@ -15,8 +15,10 @@ data:
         },
         "logo": {{ $.Values.ui.config.logo | quote }},
         "about": {
+            {{ if $.Values.ui.config.about -}}
             "title": {{ $.Values.ui.config.about.title | quote }},
             "body": {{ $.Values.ui.config.about.body | quote }}
+            {{- end }}
         },
     }
   {{- end }}
