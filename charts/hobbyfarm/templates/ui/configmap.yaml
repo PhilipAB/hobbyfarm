@@ -17,7 +17,15 @@ data:
         "about": {
             {{ if $.Values.ui.config.about -}}
             "title": {{ $.Values.ui.config.about.title | default "" | quote }},
-            "body": {{ $.Values.ui.config.about.body | default "" | quote }}
+            "body": {{ $.Values.ui.config.about.body | default "" | quote }},
+            "buttons": [
+            {{- range $index, $val := $.Values.ui.config.about.buttons }}
+            {
+                {{ "title" | quote | indent 4}}: {{ $val.title | quote }},
+                {{ "url" | quote | indent 4}}: {{ $val.url | quote }}
+            }{{ if ne $index (len $.Values.ui.config.about.buttons sub 1) }},{{ end }}
+            {{- end }}
+            ]
             {{- end }}
         }
     }
