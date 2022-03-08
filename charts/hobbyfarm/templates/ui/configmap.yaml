@@ -14,10 +14,12 @@ data:
             "background": {{ $.Values.ui.config.login.background | quote }}
         },
         "logo": {{ $.Values.ui.config.logo | quote }},
+        {{ if $.Values.ui.config.about -}}
         "about": {
-            "title": {{ $.Values.ui.config.aboutTitle | default "" | quote }},
-            "body": {{ $.Values.ui.config.aboutBody | default "" | quote }}
+            "title": {{ $.Values.ui.config.about.title | default "" | quote }},
+            "body": {{ $.Values.ui.config.about.body | default "" | quote }}
         }
+        {{- end }}
     }
   {{- end }}
   {{ if $.Values.ui.custom -}}
