@@ -1,0 +1,27 @@
+{{ if $.Values.ingress.hostnames.guac }}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: guac
+  namespace: {{ .Release.Namespace }}
+  annotations:
+  {{- range $key, $value := .Values.ingress.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+spec:
+  rules:
+  - host: {{ $.Values.ingress.hostnames.guac }}
+    http:
+      paths:
+      - backend:
+          serviceName: guac
+          servicePort: 80
+{{ if $.Values.ingress.tls.enabled }}
+  tls:
+  - hosts:
+    - {{ $.Values.ingress.hostnames.guac }}
+{{- if hasKey .Values.ingress.tls.secrets "guac" }}
+    secretName: {{ $.Values.ingress.tls.secrets.guac }}
+{{- end }}
+{{ end }}
+{{ end }}
