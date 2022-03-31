@@ -8,5 +8,4 @@ spec:
     component: guac
   ports:
     - name: http
-      port: 80
-      targetPort: 4567
+      port: 4567
