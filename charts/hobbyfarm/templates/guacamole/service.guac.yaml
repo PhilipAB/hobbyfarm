@@ -1,3 +1,4 @@
+{{ if $.Values.guac }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -10,3 +11,4 @@ spec:
     - name: http
       port: 80
       targetPort: 4567
+{{ end }}
