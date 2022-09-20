@@ -235,8 +235,6 @@ spec:
         properties:
           spec:
             properties:
-              name:
-                type: string
               burst_capable:
                 type: boolean
               burst_capacity:
