@@ -22,8 +22,6 @@ spec:
           args:
           - "-v=9"
           - "-logtostderr"
-        command:
-        - authservice
         env:
           - name: HF_NAMESPACE
             value: {{ .Release.Namespace }}
