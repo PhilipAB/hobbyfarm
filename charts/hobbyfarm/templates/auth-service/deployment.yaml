@@ -18,6 +18,10 @@ spec:
       containers:
       - name: auth-service
         image: {{ $.Values.auth.image }}
+        command: ["authservice"]
+          args:
+          - "-v=9"
+          - "-logtostderr"
         command:
         - authservice
         env:
