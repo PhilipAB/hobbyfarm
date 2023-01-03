@@ -30,6 +30,9 @@ ui:
     # .custom-css {
       # /* Some custom css */
     # }
+auth:
+  # image: not available yet
+  replicas: 1 
 gargantua:
   image: hobbyfarm/gargantua:v2.0.0-rc1
   logLevel: "0"
@@ -58,6 +61,7 @@ ingress:
   hostnames:
     # ui: example.com
     # admin: admin.example.com
+    # auth: auth.example.com
     # backend: hf.example.com
     # shell: shell.example.com
     ranchervm: {}
