@@ -2,26 +2,33 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: auth-service
-  labels:
-    app: auth-service
   namespace: {{ .Release.Namespace }}
 spec:
-  replicas: {{ $.Values.auth.replicas }}
   selector:
     matchLabels:
-      app: auth-service
+      component: auth-service
   template:
     metadata:
       labels:
-        app: auth-service
+        component: auth-service
     spec:
       containers:
-      - name: auth-service
-        image: {{ $.Values.auth.image }}
-        command:
-        - authservice
-        - -logtostderr
-        - -v=9
-        env:
-          - name: HF_NAMESPACE
-            value: {{ .Release.Namespace }}
+        - name: auth-service
+          image: {{ $.Values.auth.image }}
+          command: ["authservice"]
+          args:
+          - "-v=9"
+          - "-logtostderr"
+          env:
+            - name: LOG_LEVEL
+              value: {{ $.Values.gargantua.logLevel | quote }}
+            - name: HF_BASENAME_SCHEDULED_PREFIX
+              value: {{ $.Values.gargantua.scheduledBaseNamePrefix | quote }}
+            - name: HF_BASENAME_DYNAMIC_PREFIX
+              value: {{ $.Values.gargantua.dynamicBaseNamePrefix | quote }}
+            - name: HF_NAMESPACE
+              value: {{ .Release.Namespace | quote }}
+            - name: PORT
+              value: {{ .Values.gargantua.apiPort | quote }}
+          ports:
+          - containerPort: {{ .Values.gargantua.apiPort }}
