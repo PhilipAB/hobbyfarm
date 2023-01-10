@@ -32,7 +32,9 @@ ui:
     # }
 auth:
   # image: not available yet
-  replicas: 1 
+  replicas: 1
+  logLevel: "0"
+  apiPort: 80
 gargantua:
   image: hobbyfarm/gargantua:v2.0.0-rc1
   logLevel: "0"
