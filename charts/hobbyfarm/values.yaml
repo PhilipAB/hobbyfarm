@@ -35,6 +35,7 @@ auth:
   replicas: 1
   logLevel: "0"
   apiPort: 80
+  grpcPort: 8080
 gargantua:
   image: hobbyfarm/gargantua:v2.0.0-rc1
   logLevel: "0"
