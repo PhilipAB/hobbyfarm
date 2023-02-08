@@ -9,7 +9,7 @@ data:
     clusters:
       - name: example-cluster
         cluster:
-          server: https://auth-server.hobbyfarm.svc/authenticate
+          server: https://webhook-authn.hobbyfarm.svc/authenticate
     contexts:
       - context:
           cluster: example-cluster
