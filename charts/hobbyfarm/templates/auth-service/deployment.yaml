@@ -47,5 +47,5 @@ spec:
           secretName: webhook-authn-secret
           optional: false
       - name: webhook-config
-          configMap:
-            name: webhook-config
+        configMap:
+          name: webhook-config
