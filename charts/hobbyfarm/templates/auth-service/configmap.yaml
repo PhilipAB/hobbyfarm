@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webhook-config
+data:
+  webhook-config.yaml: |
+    apiVersion: v1
+    kind: Config
+    clusters:
+      - name: example-cluster
+        cluster:
+          server: https://auth-server.hobbyfarm.svc/authenticate
+    contexts:
+      - context:
+          cluster: example-cluster
+          user: ""
+        name: default-context
+    current-context: default-context
+    users: []
