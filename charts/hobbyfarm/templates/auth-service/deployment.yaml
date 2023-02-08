@@ -15,7 +15,7 @@ spec:
       containers:
         - name: auth-service
           image: {{ $.Values.auth.image }}
-          command: ["sh", "-c", "authservice" && "--authentication-token-webhook-config-file=/etc/kubernetes/webhook-config/webhook-config.yaml"]
+          command: ["sh", "-c", "authservice && --authentication-token-webhook-config-file=/etc/kubernetes/webhook-config/webhook-config.yaml"]
           args:
           - "-v=9"
           - "-logtostderr"
