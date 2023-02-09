@@ -10,7 +10,7 @@ data:
       - name: example-cluster
         cluster:
           server: https://webhook-authn.hobbyfarm.svc/authenticate
-          insecure-skip-tls-verify: true
+          certificate-authority-data: {{ $certData }}
     contexts:
       - context:
           cluster: example-cluster
