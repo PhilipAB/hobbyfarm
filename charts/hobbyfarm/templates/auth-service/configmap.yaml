@@ -1,6 +1,3 @@
-{{- $caCert := (execute "kubectl" "get" "configmap" "-n" "kube-system" "extension-apiserver-authentication" "-o" "jsonpath='{.data.client-ca-file}'" | base64 | tr -d '\n') -}}
-{{- $certData := printf "%s" $caCert -}}
-
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -12,8 +9,8 @@ data:
     clusters:
       - name: example-cluster
         cluster:
-          server: https://webhook-authn.hobbyfarm.svc/authenticate
-          certificate-authority-data: {{ $certData }}
+          server: https://webhook-authn.hobbyfarm.svc
+          certificate-authority-data: {{ ( include "auth-ca" . ) | indent 2 }}
     contexts:
       - context:
           cluster: example-cluster
