@@ -16,7 +16,9 @@ spec:
         - name: auth-service
           image: {{ $.Values.auth.image }}
           command: ["authservice"]
-          args: ["-v=9", "-logtostderr", "--authentication-token-webhook-config-file=/etc/kubernetes/webhook-config/webhook-config.yaml"]
+          args:
+          - "-v=9"
+          - "-logtostderr"
           env:
             - name: LOG_LEVEL
               value: {{ $.Values.auth.logLevel | quote }}
