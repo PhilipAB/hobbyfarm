@@ -9,8 +9,8 @@ data:
     clusters:
       - name: example-cluster
         cluster:
-          server: https://webhook-authn.hobbyfarm.svc
-          certificate-authority-data: {{ ( include "auth-ca" . ) | indent 2 }}
+          server: https://webhook-authn.hobbyfarm.svc/authenticate
+          insecure-skip-tls-verify: true
     contexts:
       - context:
           cluster: example-cluster
