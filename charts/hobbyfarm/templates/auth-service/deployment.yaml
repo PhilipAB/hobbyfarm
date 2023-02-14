@@ -28,24 +28,6 @@ spec:
               value: {{ .Values.auth.apiPort | quote }}
             - name: GRPC_PORT
               value: {{ .Values.auth.grpcPort | quote }}
-            - name: WEBHOOK_PORT
-              value: {{ .Values.auth.webhook.containerPort | quote }}
           ports:
           - containerPort: {{ .Values.auth.apiPort }}
           - containerPort: {{ .Values.auth.grpcPort }}
-          - containerPort: {{ .Values.auth.webhook.containerPort}}
-          volumeMounts:
-          - name: webhook-secret
-            mountPath: "/webhook-secret"
-            readOnly: true
-          - name: webhook-config
-            mountPath: /etc/kubernetes/webhook-config
-            readOnly: true
-      volumes:
-      - name: webhook-secret
-        secret:
-          secretName: webhook-authn-secret
-          optional: false
-      - name: webhook-config
-        configMap:
-          name: webhook-config

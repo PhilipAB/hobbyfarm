@@ -36,9 +36,10 @@ auth:
   logLevel: "0"
   apiPort: 80
   grpcPort: 8080
-  webhook:
-    containerPort: 444
-    servicePort: 443
+webhook:
+  # image: not available yet
+  containerPort: 3000
+  hostPort: 3000
 gargantua:
   image: hobbyfarm/gargantua:v2.0.0-rc1
   logLevel: "0"
