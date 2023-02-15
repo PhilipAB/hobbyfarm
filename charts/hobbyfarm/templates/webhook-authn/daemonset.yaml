@@ -33,12 +33,13 @@ spec:
           hostPort: {{ .Values.webhook.hostPort }}
           protocol: TCP
         volumeMounts:
-          - name: webhook-config
-            mountPath: /etc/kubernetes/webhook-config
-            readOnly: true
+        - name: auth-secret
+          mountPath: "/auth-secret"
+          readOnly: true
       volumes:
-      - name: webhook-config
-        configMap:
-          name: webhook-config
+      - name: auth-secret
+        secret:
+          secretName: auth-grpc-secret
+          optional: false
       # Access via localhost
       hostNetwork: true
