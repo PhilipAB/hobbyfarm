@@ -31,3 +31,12 @@ spec:
           ports:
           - containerPort: {{ .Values.auth.apiPort }}
           - containerPort: {{ .Values.auth.grpcPort }}
+          volumeMounts:
+          - name: auth-secret
+            mountPath: "/auth-secret"
+            readOnly: true
+      volumes:
+      - name: auth-secret
+        secret:
+          secretName: auth-grpc-secret
+          optional: false

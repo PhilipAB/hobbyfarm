@@ -26,6 +26,8 @@ spec:
         env:
           - name: WEBHOOK_PORT
             value: {{ .Values.webhook.containerPort | quote }}
+          - name: HF_NAMESPACE
+            value: {{ .Release.Namespace | quote }}
         ports:
         - containerPort: {{ .Values.webhook.containerPort }}
           hostPort: {{ .Values.webhook.hostPort }}
