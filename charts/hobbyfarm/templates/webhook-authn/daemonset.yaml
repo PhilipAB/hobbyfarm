@@ -40,6 +40,14 @@ spec:
       - name: auth-secret
         secret:
           secretName: auth-grpc-secret
+          items:
+          - key: tls.crt
+            path: tls.crt
+          - key: tls.key
+            path: tls.key
+          - key: ca
+            path: ca
+          defaultMode: 420
           optional: false
       # Access via localhost
       hostNetwork: true
