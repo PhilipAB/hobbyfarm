@@ -40,7 +40,6 @@ spec:
       - name: auth-secret
         secret:
           secretName: auth-grpc-secret
-          namespace: {{ $.Release.Namespace }}
           optional: false
       # Access via localhost
       hostNetwork: true
