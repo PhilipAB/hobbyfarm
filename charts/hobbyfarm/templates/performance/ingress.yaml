@@ -1,0 +1,31 @@
+{{ if $.Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: perf-service
+  namespace: {{ .Release.Namespace }}
+  annotations:
+  {{- range $key, $value := .Values.ingress.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+spec:
+  rules:
+  - host: {{ $.Values.ingress.hostnames.perf }}
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: perf-service
+            port: 
+              number: 80
+{{ if $.Values.ingress.tls.enabled }}
+  tls:
+  - hosts:
+    - {{ $.Values.ingress.hostnames.perf }}
+{{- if hasKey .Values.ingress.tls.secrets "perf" }}
+    secretName: {{ $.Values.ingress.tls.secrets.perf }}
+{{- end }}
+{{ end }}
+{{ end }}

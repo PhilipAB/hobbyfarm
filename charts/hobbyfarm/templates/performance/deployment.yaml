@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: perf-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      component: perf-service
+  template:
+    metadata:
+      labels:
+        component: perf-service
+    spec:
+      containers:
+        - name: perf-service
+          image: {{ $.Values.perf.image }}
+          command: ["performanceservice"]
+          args:
+          - "-v=9"
+          - "-logtostderr"
+          env:
+            - name: LOG_LEVEL
+              value: {{ $.Values.auth.logLevel | quote }}
+            - name: GRPC_PORT
+              value: {{ .Values.auth.grpcPort | quote }}
+          ports:
+          - containerPort: {{ .Values.auth.grpcPort }}
