@@ -8,5 +8,5 @@ spec:
     component: perf-service
   ports:
   - name: grpc
-    protocol: TCP
+    protocol: http
     port: 80
