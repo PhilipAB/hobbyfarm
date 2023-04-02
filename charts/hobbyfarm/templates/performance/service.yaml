@@ -9,3 +9,5 @@ spec:
   ports:
   - name: grpc
     port: 80
+  - name: http
+    port: 8081
