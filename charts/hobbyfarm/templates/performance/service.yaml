@@ -11,4 +11,3 @@ spec:
     port: 80
   - name: http
     port: 8081
-  timeoutSeconds: 300
