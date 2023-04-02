@@ -26,6 +26,13 @@ spec:
             port:
               number: 8081
       - pathType: Prefix
+        path: "/http11"
+        backend:
+          service: 
+            name: perf-service
+            port:
+              number: 8082
+      - pathType: Prefix
         path: "/"
         backend:
           service:
