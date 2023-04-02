@@ -21,8 +21,8 @@ spec:
           - "-logtostderr"
           env:
             - name: LOG_LEVEL
-              value: {{ $.Values.auth.logLevel | quote }}
+              value: {{ $.Values.perf.logLevel | quote }}
             - name: GRPC_PORT
-              value: {{ .Values.auth.grpcPort | quote }}
+              value: {{ .Values.perf.grpcPort | quote }}
           ports:
-          - containerPort: {{ .Values.auth.grpcPort }}
+          - containerPort: {{ .Values.perf.grpcPort }}
