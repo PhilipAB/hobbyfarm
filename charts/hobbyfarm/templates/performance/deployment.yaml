@@ -26,3 +26,12 @@ spec:
               value: {{ .Values.perf.grpcPort | quote }}
           ports:
           - containerPort: {{ .Values.perf.grpcPort }}
+          volumeMounts:
+          - name: auth-secret
+            mountPath: "/auth-secret"
+            readOnly: true
+      volumes:
+      - name: auth-secret
+        secret:
+          secretName: hobbyfarm-auth-secret
+          optional: false
