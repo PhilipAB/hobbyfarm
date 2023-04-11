@@ -8,7 +8,6 @@ metadata:
     {{- range $key, $value := .Values.ingress.annotations }}
       {{ $key }}: {{ $value | quote }}
     {{- end }}
-    nginx.ingress.kubernetes.io/http2-max-field-size: "0"
 spec:
   rules:
   - host: {{ $.Values.ingress.hostnames.perf }}
