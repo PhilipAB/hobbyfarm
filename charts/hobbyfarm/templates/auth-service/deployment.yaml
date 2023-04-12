@@ -34,6 +34,15 @@ spec:
           volumeMounts:
           - name: auth-secret
             mountPath: "/etc/ssl/certs"
+            subPath: ca.crt
+            readOnly: true
+          - name: auth-secret
+            mountPath: "/etc/ssl/certs"
+            subPath: tls.key
+            readOnly: true
+          - name: auth-secret
+            mountPath: "/etc/ssl/certs"
+            subPath: tls.crt
             readOnly: true
       volumes:
       - name: auth-secret
