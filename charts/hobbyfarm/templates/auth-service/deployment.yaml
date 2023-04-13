@@ -33,19 +33,10 @@ spec:
           - containerPort: {{ .Values.auth.grpcPort }}
           volumeMounts:
           - name: auth-secret
-            mountPath: "/etc/ssl/certs/ca.crt"
-            subPath: ca.crt
-            readOnly: true
-          - name: auth-secret
-            mountPath: "/etc/ssl/certs/tls.key"
-            subPath: tls.key
-            readOnly: true
-          - name: auth-secret
-            mountPath: "/etc/ssl/certs/tls.crt"
-            subPath: tls.crt
+            mountPath: "/etc/ssl/certs"
             readOnly: true
       volumes:
       - name: auth-secret
         secret:
-          secretName: hobbyfarm-auth-secret
+          secretName: {{ .Values.certmanager.secretName }}
           optional: false

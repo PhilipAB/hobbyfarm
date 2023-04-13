@@ -1,0 +1,2 @@
+{{- include "hobbyfarm.cert-manager.issuer" . | indent 2 }}
+{{- include "hobbyfarm.cert-manager.certificate" . | indent 2 }}

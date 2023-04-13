@@ -140,3 +140,7 @@ perf:
   replicas: 1
   logLevel: "0"
   grpcPort: 80
+certmanager:
+  issuerName: "hobbyfarm-ca"
+  certificateName: "hobbyfarm-cert"
+  secretName: "hobbyfarm-cert-secret"
