@@ -28,7 +28,16 @@ spec:
           - containerPort: {{ .Values.perf.grpcPort }}
           volumeMounts:
           - name: auth-secret
-            mountPath: "/etc/ssl/certs"
+            mountPath: "/etc/ssl/certs/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+          - name: auth-secret
+            mountPath: "/etc/ssl/certs/tls.key"
+            subPath: tls.key
+            readOnly: true
+          - name: auth-secret
+            mountPath: "/etc/ssl/certs/tls.crt"
+            subPath: tls.crt
             readOnly: true
       volumes:
       - name: auth-secret
