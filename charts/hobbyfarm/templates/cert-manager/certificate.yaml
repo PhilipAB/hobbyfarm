@@ -6,6 +6,7 @@ metadata:
 spec:
   secretName: {{ .Values.certmanager.secretName }}
   dnsNames:
+  - "localhost"
   - "*.auth-service.{{ .Release.Namespace }}.svc.cluster.local"
   - "*.auth-service.{{ .Release.Namespace }}.svc"
   - "*.auth-service.{{ .Release.Namespace }}"
