@@ -144,5 +144,5 @@ certmanager:
   issuerName: "hobbyfarm-ca"
   certificateName: "hobbyfarm-cert"
   secretName: "hobbyfarm-cert-secret"
-cert-manager-dependency: 
+cert-manager: 
   namespace: cert-manager-test

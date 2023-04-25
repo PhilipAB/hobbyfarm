@@ -6,7 +6,7 @@ description: interactive coding platform in a browser
 sources:
   - https://github.com/hobbyfarm
 dependencies:
-  - name: cert-manager-dependency
+  - name: cert-manager
     version: v1.11.0
     repository: https://charts.jetstack.io
     alias: cert-manager
