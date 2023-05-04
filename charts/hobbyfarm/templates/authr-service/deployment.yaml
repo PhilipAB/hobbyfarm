@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authr-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      component: authr-service
+  template:
+    metadata:
+      labels:
+        component: authr-service
+    spec:
+      containers:
+        - name: authr-service
+          image: {{ $.Values.authr.image }}
+          command: ["authrservice"]
+          args:
+          - "-v=9"
+          - "-logtostderr"
+          env:
+            - name: LOG_LEVEL
+              value: {{ $.Values.authr.logLevel | quote }}
+            - name: HF_NAMESPACE
+              value: {{ .Release.Namespace | quote }}
+            - name: GRPC_PORT
+              value: {{ .Values.authr.grpcPort | quote }}
+          ports:
+          - containerPort: {{ .Values.authr.grpcPort }}
+          volumeMounts:
+          - name: authr-secret
+            mountPath: "/etc/ssl/certs/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+          - name: authr-secret
+            mountPath: "/etc/ssl/certs/tls.key"
+            subPath: tls.key
+            readOnly: true
+          - name: authr-secret
+            mountPath: "/etc/ssl/certs/tls.crt"
+            subPath: tls.crt
+            readOnly: true
+      volumes:
+      - name: authr-secret
+        secret:
+          secretName: {{ .Values.certmanager.secretName }}
+          optional: false
