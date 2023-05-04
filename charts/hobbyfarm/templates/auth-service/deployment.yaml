@@ -1,51 +1,51 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-service
+  name: authn-service
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
     matchLabels:
-      component: auth-service
+      component: authn-service
   template:
     metadata:
       labels:
-        component: auth-service
+        component: authn-service
     spec:
       containers:
-        - name: auth-service
-          image: {{ $.Values.auth.image }}
-          command: ["authservice"]
+        - name: authn-service
+          image: {{ $.Values.authn.image }}
+          command: ["authnservice"]
           args:
           - "-v=9"
           - "-logtostderr"
           env:
             - name: LOG_LEVEL
-              value: {{ $.Values.auth.logLevel | quote }}
+              value: {{ $.Values.authn.logLevel | quote }}
             - name: HF_NAMESPACE
               value: {{ .Release.Namespace | quote }}
             - name: PORT
-              value: {{ .Values.auth.apiPort | quote }}
+              value: {{ .Values.authn.apiPort | quote }}
             - name: GRPC_PORT
-              value: {{ .Values.auth.grpcPort | quote }}
+              value: {{ .Values.authn.grpcPort | quote }}
           ports:
-          - containerPort: {{ .Values.auth.apiPort }}
-          - containerPort: {{ .Values.auth.grpcPort }}
+          - containerPort: {{ .Values.authn.apiPort }}
+          - containerPort: {{ .Values.authn.grpcPort }}
           volumeMounts:
-          - name: auth-secret
+          - name: authn-secret
             mountPath: "/etc/ssl/certs/ca.crt"
             subPath: ca.crt
             readOnly: true
-          - name: auth-secret
+          - name: authn-secret
             mountPath: "/etc/ssl/certs/tls.key"
             subPath: tls.key
             readOnly: true
-          - name: auth-secret
+          - name: authn-secret
             mountPath: "/etc/ssl/certs/tls.crt"
             subPath: tls.crt
             readOnly: true
       volumes:
-      - name: auth-secret
+      - name: authn-secret
         secret:
           secretName: {{ .Values.certmanager.secretName }}
           optional: false

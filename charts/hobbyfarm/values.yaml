@@ -30,7 +30,7 @@ ui:
     # .custom-css {
       # /* Some custom css */
     # }
-auth:
+authn:
   # image: not available yet
   replicas: 1
   logLevel: "0"

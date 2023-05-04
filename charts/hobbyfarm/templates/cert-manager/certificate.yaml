@@ -7,8 +7,11 @@ spec:
   secretName: {{ .Values.certmanager.secretName }}
   dnsNames:
   - "localhost"
-  - "auth-service.{{ .Release.Namespace }}.svc.cluster.local"
-  - "auth-service.{{ .Release.Namespace }}.svc"
-  - "auth-service.{{ .Release.Namespace }}"
+  - "authn-service.{{ .Release.Namespace }}.svc.cluster.local"
+  - "authn-service.{{ .Release.Namespace }}.svc"
+  - "authn-service.{{ .Release.Namespace }}"
+  - "authr-service.{{ .Release.Namespace }}.svc.cluster.local"
+  - "authr-service.{{ .Release.Namespace }}.svc"
+  - "authr-service.{{ .Release.Namespace }}"
   issuerRef:
     name: {{ .Values.certmanager.issuerName }}
