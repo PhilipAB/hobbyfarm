@@ -39,8 +39,24 @@ spec:
           - name: webhook-secret
             mountPath: "/webhook-secret"
             readOnly: true
+          - name: auth-secret
+            mountPath: "/etc/ssl/certs/ca.crt"
+            subPath: ca.crt
+            readOnly: true
+          - name: auth-secret
+            mountPath: "/etc/ssl/certs/tls.key"
+            subPath: tls.key
+            readOnly: true
+          - name: auth-secret
+            mountPath: "/etc/ssl/certs/tls.crt"
+            subPath: tls.crt
+            readOnly: true
       volumes:
       - name: webhook-secret
         secret:
           secretName: hobbyfarm-webhook-secret
+          optional: false
+      - name: auth-secret
+        secret:
+          secretName: {{ .Values.certmanager.secretName }}
           optional: false
