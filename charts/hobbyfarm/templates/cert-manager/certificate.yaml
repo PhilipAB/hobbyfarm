@@ -13,5 +13,8 @@ spec:
   - "authr-service.{{ .Release.Namespace }}.svc.cluster.local"
   - "authr-service.{{ .Release.Namespace }}.svc"
   - "authr-service.{{ .Release.Namespace }}"
+  - "user-service.{{ .Release.Namespace }}.svc.cluster.local"
+  - "user-service.{{ .Release.Namespace }}.svc"
+  - "user-service.{{ .Release.Namespace }}"
   issuerRef:
     name: {{ .Values.certmanager.issuerName }}
