@@ -15,7 +15,7 @@ spec:
       containers:
         - name: authn-service
           image: {{ $.Values.authn.image }}
-          command: ["authnservice"]
+          command: ["authnsvc"]
           args:
           - "-v=9"
           - "-logtostderr"
