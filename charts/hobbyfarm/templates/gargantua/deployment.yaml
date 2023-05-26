@@ -36,9 +36,6 @@ spec:
           - containerPort: {{ .Values.gargantua.webhook.containerPort}}
           - containerPort: {{ .Values.gargantua.apiPort }}
           volumeMounts:
-          - name: webhook-secret
-            mountPath: "/webhook-secret"
-            readOnly: true
           - name: auth-secret
             mountPath: "/etc/ssl/certs/ca.crt"
             subPath: ca.crt
@@ -52,10 +49,6 @@ spec:
             subPath: tls.crt
             readOnly: true
       volumes:
-      - name: webhook-secret
-        secret:
-          secretName: hobbyfarm-webhook-secret
-          optional: false
       - name: auth-secret
         secret:
           secretName: {{ .Values.certmanager.secretName }}
