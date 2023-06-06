@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         component: authr-service
+      annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/authn-service/secret.yaml") . | sha256sum }}
     spec:
       containers:
         - name: authr-service
@@ -44,5 +46,5 @@ spec:
       volumes:
       - name: authr-secret
         secret:
-          secretName: {{ .Values.certmanager.secretName }}
+          secretName: auth-grpc-secret
           optional: false
