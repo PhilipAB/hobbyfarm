@@ -53,5 +53,5 @@ spec:
       volumes:
       - name: auth-secret
         secret:
-          secretName: auth-grpc-secret
+          secretName: hobbyfarm-grpc-secret
           optional: false

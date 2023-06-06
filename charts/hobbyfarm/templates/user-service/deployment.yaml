@@ -51,7 +51,7 @@ spec:
       volumes:
       - name: user-secret
         secret:
-          secretName: auth-grpc-secret
+          secretName: hobbyfarm-grpc-secret
           optional: false
       - name: webhook-secret
         secret:
