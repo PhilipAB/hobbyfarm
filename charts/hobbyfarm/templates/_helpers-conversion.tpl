@@ -4,5 +4,5 @@
 {{- $cert := genSignedCert "hobbyfarm-webhook" nil $altNames 3650 $ca -}}
 tls.crt: {{ $cert.Cert | b64enc }}
 tls.key: {{ $cert.Key | b64enc }}
-ca: {{ $ca.Cert | b64enc }}
+ca.crt: {{ $ca.Cert | b64enc }}
 {{- end -}}

@@ -47,8 +47,16 @@ spec:
             mountPath: "/etc/ssl/certs/tls.crt"
             subPath: tls.crt
             readOnly: true
+          - name: webhook-secret
+            mountPath: "/webhook/ca.crt"
+            subPath: ca.crt
+            readOnly: true
       volumes:
       - name: user-secret
         secret:
           secretName: hobbyfarm-grpc-secret
+          optional: false
+      - name: webhook-secret
+        secret:
+          secretName: hobbyfarm-webhook-secret
           optional: false

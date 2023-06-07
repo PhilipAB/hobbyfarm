@@ -33,7 +33,7 @@ spec:
           - containerPort: {{ .Values.conversion.containerPort}}
           volumeMounts:
           - name: webhook-secret
-            mountPath: "/webhook-secret"
+            mountPath: "/etc/ssl/certs"
             readOnly: true
       volumes:
       - name: webhook-secret
