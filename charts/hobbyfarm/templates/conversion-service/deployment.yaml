@@ -13,7 +13,7 @@ spec:
       labels:
         component: conversion-service
       annotations:
-        checksum/secret: {{ include (print $.Template.BasePath "/authn-service/secret.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/conversion-service/secret.yaml") . | sha256sum }}
     spec:
       containers:
         - name: conversion-service
