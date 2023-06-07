@@ -48,7 +48,7 @@ spec:
             subPath: tls.crt
             readOnly: true
           - name: webhook-secret
-            mountPath: "/webhook/ca.crt"
+            mountPath: "/webhook-secret/ca.crt"
             subPath: ca.crt
             readOnly: true
       volumes:
