@@ -4,6 +4,7 @@ metadata:
   name: authr-service
   namespace: {{ .Release.Namespace }}
 spec:
+  replicas: {{ $.Values.authr.replicas }}
   selector:
     matchLabels:
       component: authr-service

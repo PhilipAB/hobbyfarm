@@ -8,8 +8,8 @@ spec:
     component: user-service
   ports:
   - name: http
-    port: 80
+    protocol: TCP
+    port: {{ .Values.user.apiPort }}
   - name: grpc
     protocol: TCP
-    port: 8080
-    targetPort: 8080
+    port: {{ .Values.user.grpcPort }}

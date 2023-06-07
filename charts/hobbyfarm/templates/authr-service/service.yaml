@@ -8,4 +8,5 @@ spec:
     component: authr-service
   ports:
   - name: grpc
-    port: 8080
+    protocol: TCP
+    port: {{ .Values.authr.grpcPort }}

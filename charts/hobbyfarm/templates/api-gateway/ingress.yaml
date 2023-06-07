@@ -10,7 +10,7 @@ metadata:
   {{- end }}
 spec:
   rules:
-  - host: {{ $.Values.ingress.hostnames.auth }}
+  - host: {{ $.Values.ingress.hostnames.gateway }}
     http:
       paths:
       - pathType: Prefix
@@ -30,9 +30,9 @@ spec:
 {{ if $.Values.ingress.tls.enabled }}
   tls:
   - hosts:
-    - {{ $.Values.ingress.hostnames.auth }}
-{{- if hasKey .Values.ingress.tls.secrets "auth" }}
-    secretName: {{ $.Values.ingress.tls.secrets.auth }}
+    - {{ $.Values.ingress.hostnames.gateway }}
+{{- if hasKey .Values.ingress.tls.secrets "gateway" }}
+    secretName: {{ $.Values.ingress.tls.secrets.gateway }}
 {{- end }}
 {{ end }}
 {{ end }}

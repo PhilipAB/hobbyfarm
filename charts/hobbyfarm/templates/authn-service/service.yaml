@@ -8,8 +8,8 @@ spec:
     component: authn-service
   ports:
   - name: http
-    port: 80
+    protocol: TCP
+    port: {{ .Values.authn.apiPort }}
   - name: grpc
     protocol: TCP
-    port: 8080
-    targetPort: 8080
+    port: {{ .Values.authn.grpcPort }}

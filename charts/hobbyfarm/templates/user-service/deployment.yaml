@@ -4,6 +4,7 @@ metadata:
   name: user-service
   namespace: {{ .Release.Namespace }}
 spec:
+  replicas: {{ $.Values.user.replicas }}
   selector:
     matchLabels:
       component: user-service
@@ -26,11 +27,12 @@ spec:
               value: {{ $.Values.user.logLevel | quote }}
             - name: HF_NAMESPACE
               value: {{ .Release.Namespace | quote }}
+            - name: PORT
+              value: {{ .Values.user.apiPort | quote }}
             - name: GRPC_PORT
               value: {{ .Values.user.grpcPort | quote }}
-            - name: WEBHOOK_PORT
-              value: {{ .Values.user.webhook.containerPort | quote }}
           ports:
+          - containerPort: {{ .Values.user.apiPort }}
           - containerPort: {{ .Values.user.grpcPort }}
           volumeMounts:
           - name: user-secret
@@ -45,15 +47,8 @@ spec:
             mountPath: "/etc/ssl/certs/tls.crt"
             subPath: tls.crt
             readOnly: true
-          - name: webhook-secret
-            mountPath: "/webhook-secret"
-            readOnly: true
       volumes:
       - name: user-secret
         secret:
           secretName: hobbyfarm-grpc-secret
-          optional: false
-      - name: webhook-secret
-        secret:
-          secretName: hobbyfarm-webhook-secret
           optional: false

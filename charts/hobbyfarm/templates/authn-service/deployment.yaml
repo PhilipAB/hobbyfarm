@@ -4,6 +4,7 @@ metadata:
   name: authn-service
   namespace: {{ .Release.Namespace }}
 spec:
+  replicas: {{ $.Values.authn.replicas }}
   selector:
     matchLabels:
       component: authn-service

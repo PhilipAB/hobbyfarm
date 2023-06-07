@@ -5,8 +5,8 @@ metadata:
   name: hobbyfarm-webhook
 spec:
   selector:
-    component: user-service
+    component: conversion-service
   ports:
   - name: webhook
-    port: {{ .Values.user.webhook.servicePort }}
-    targetPort: {{ .Values.user.webhook.containerPort }}
+    port: {{ .Values.conversion.servicePort }}
+    targetPort: {{ .Values.conversion.containerPort }}

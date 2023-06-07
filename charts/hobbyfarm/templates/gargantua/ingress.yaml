@@ -14,6 +14,20 @@ spec:
     http:
       paths:
       - pathType: Prefix
+        path: "/auth"
+        backend:
+          service:
+            name: authn-service
+            port: 
+              number: 80
+      - pathType: Prefix
+        path: "/a/user"
+        backend:
+          service:
+            name: user-service
+            port: 
+              number: 80
+      - pathType: Prefix
         path: "/"
         backend:
           service:
