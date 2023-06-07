@@ -32,10 +32,7 @@ spec:
               value: {{ .Release.Namespace | quote }}
             - name: PORT
               value: {{ .Values.gargantua.apiPort | quote }}
-            - name: WEBHOOK_PORT
-              value: {{ .Values.gargantua.webhook.containerPort | quote }}
           ports:
-          - containerPort: {{ .Values.gargantua.webhook.containerPort}}
           - containerPort: {{ .Values.gargantua.apiPort }}
           volumeMounts:
           - name: auth-secret
