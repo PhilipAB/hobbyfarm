@@ -28,6 +28,20 @@ spec:
             port: 
               number: 80
       - pathType: Prefix
+        path: "/a/roles"
+        backend:
+          service:
+            name: rbac-service
+            port: 
+              number: 80
+      - pathType: Prefix
+        path: "/a/rolebindings"
+        backend:
+          service:
+            name: rbac-service
+            port: 
+              number: 80
+      - pathType: Prefix
         path: "/"
         backend:
           service:
