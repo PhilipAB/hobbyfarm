@@ -32,6 +32,7 @@ ui:
     # }
 accesscode:
   # image: not available yet
+  serviceAccountName: "hobbyfarm-accesscode"
   replicas: 1
   logLevel: "0"
   grpcPort: 8080
@@ -52,12 +53,14 @@ conversion:
   servicePort: 443 # needs to remain 443, see https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#deploy-the-conversion-webhook-servicev2
 rbac:
   # image: not available yet
+  serviceAccountName: "hobbyfarm-rbac"
   replicas: 1
   logLevel: "0"
   apiPort: 80
   grpcPort: 8080
 user:
   # image: not available yet
+  serviceAccountName: "hobbyfarm-user"
   replicas: 1
   logLevel: "0"
   apiPort: 80
