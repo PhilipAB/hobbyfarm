@@ -66,6 +66,7 @@ user:
   apiPort: 80
   grpcPort: 8080
 gargantua:
+  serviceAccountName: "hobbyfarm-gargantua"
   image: hobbyfarm/gargantua:v2.0.0-rc1
   logLevel: "0"
   dynamicBaseNamePrefix: "dynamic"
