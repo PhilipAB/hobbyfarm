@@ -59,6 +59,13 @@ rbac:
   logLevel: "0"
   apiPort: 80
   grpcPort: 8080
+setting:
+  # image: not available yet
+  serviceAccountName: "hobbyfarm-setting"
+  replicas: 1
+  logLevel: "0"
+  apiPort: 80
+  grpcPort: 8080
 user:
   # image: not available yet
   serviceAccountName: "hobbyfarm-user"
