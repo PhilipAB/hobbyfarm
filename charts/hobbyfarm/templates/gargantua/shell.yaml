@@ -17,6 +17,7 @@ spec:
       annotations:
         checksum/secret: {{ include (print $.Template.BasePath "/tls-certificates/grpc-secret.yaml") . | sha256sum }}
     spec:
+      serviceAccountName: {{ .Values.gargantua.serviceAccountName }}
       containers:
       - name: gargantua
         image: {{ $.Values.gargantua.image }}
