@@ -15,6 +15,7 @@ spec:
       annotations:
         checksum/secret: {{ include (print $.Template.BasePath "/tls-certificates/grpc-secret.yaml") . | sha256sum }}
     spec:
+      serviceAccountName: {{ .Values.authn.serviceAccountName }}
       containers:
         - name: authn-service
           image: {{ $.Values.authn.image }}

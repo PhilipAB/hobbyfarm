@@ -38,6 +38,7 @@ accesscode:
   grpcPort: 8080
 authn:
   # image: not available yet
+  serviceAccountName: "hobbyfarm-authn"
   replicas: 1
   logLevel: "0"
   apiPort: 80
