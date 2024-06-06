@@ -59,6 +59,11 @@ course:
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-course"
+dbconfig:
+  image: #tbd
+  replicas: 1
+  logLevel: "0"
+  serviceAccountName: "hobbyfarm-dbconfig"
 rbac:
   image: hobbyfarm/rbac-service:v3.1.0
   replicas: 1
@@ -86,6 +91,10 @@ gargantua:
   scheduledBaseNamePrefix: "scheduled" # @TODO: sessionsvc and scheduledeventsvc need this -> could be done under "general"
   apiPort: 80
   serviceAccountName: "hobbyfarm-gargantua"
+
+general:
+  dynamicBaseNamePrefix: "dynamic"
+  scheduledBaseNamePrefix: "scheduled"
 
 # Use guacamole to provision windows VMs (optional)
 # guac:
