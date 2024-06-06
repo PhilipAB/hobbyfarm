@@ -16,7 +16,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     namespace: {{ .Release.Namespace }}
-    name: {{ .Values.terraform.serviceAccountName }}
+    name: {{ .Values.terraform.service.serviceAccountName }}
 roleRef:
   kind: ClusterRole
   name: terraform-{{ .Release.Namespace }}
