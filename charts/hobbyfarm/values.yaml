@@ -152,6 +152,12 @@ vmset:
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-vmset"
+vmtemplate:
+  image: #tbd
+  replicas: 1
+  logLevel: "0"
+  apiPort: 80
+  serviceAccountName: "hobbyfarm-vmtemplate"
 
 gargantua:
   image: hobbyfarm/gargantua:v3.1.0
