@@ -32,6 +32,9 @@ rules:
   - apiGroups: ["hobbyfarm.io"]
     resources: ["virtualmachineclaims"]
     verbs: ["*"]
+  - apiGroups: ["apps"]
+    resources: ["statefulsets"]
+    verbs: ["list", "get", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
