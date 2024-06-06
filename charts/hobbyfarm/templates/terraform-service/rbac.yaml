@@ -1,54 +1,49 @@
+{{ if .Values.terraform.enabled }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: gargantua-{{ .Release.Namespace }}
+  name: terraform-{{ .Release.Namespace }}
 rules:
   - apiGroups: ["apiextensions.k8s.io"]
     resources: ["customresourcedefinitions"]
-    verbs: ["*"]
-  - apiGroups: ["rbac.authorization.k8s.io"]
-    resources: ["clusterroles", "clusterrolebindings"]
-    verbs: ["get", "list", "watch"]
-  - apiGroups: ["admissionregistration.k8s.io"]
-    resources: ["*"]
     verbs: ["*"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: gargantua-{{ .Release.Namespace }}
+  name: terraform-{{ .Release.Namespace }}
 subjects:
   - kind: ServiceAccount
     namespace: {{ .Release.Namespace }}
-    name: {{ .Values.gargantua.serviceAccountName }}
+    name: {{ .Values.terraform.serviceAccountName }}
 roleRef:
   kind: ClusterRole
-  name: gargantua-{{ .Release.Namespace }}
+  name: terraform-{{ .Release.Namespace }}
   apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: gargantua
+  name: terraformsvc
 rules:
   - apiGroups: [""]
     resources: ["*"]
     verbs: ["*"]
-# @TODO: Restrict this to resources managed by Gargantua (only predefined services left)
-  - apiGroups: ["hobbyfarm.io"]
+  - apiGroups: ["terraformcontroller.cattle.io"]
     resources: ["*"]
     verbs: ["*"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: gargantua
+  name: terraformsvc
 subjects:
   - kind: ServiceAccount
     namespace: {{ .Release.Namespace }}
-    name: {{ .Values.gargantua.serviceAccountName }}
+    name: {{ .Values.terraform.service.serviceAccountName }}
 roleRef:
   kind: Role
-  name: gargantua
+  name: terraformsvc
   apiGroup: rbac.authorization.k8s.io
+{{ end }}
