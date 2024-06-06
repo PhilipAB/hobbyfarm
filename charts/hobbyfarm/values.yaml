@@ -138,6 +138,13 @@ vm:
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-vm"
+vmclaim:
+  image: #tbd
+  replicas: 1
+  controllerWorkerThreadCount: 1
+  logLevel: "0"
+  apiPort: 80
+  serviceAccountName: "hobbyfarm-vmclaim"
 
 gargantua:
   image: hobbyfarm/gargantua:v3.1.0
