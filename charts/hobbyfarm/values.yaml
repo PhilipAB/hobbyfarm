@@ -88,6 +88,13 @@ scenario:
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-scenario"
+scheduledevent:
+  image: #tbd
+  replicas: 1
+  controllerWorkerThreadCount: 1
+  logLevel: "0"
+  apiPort: 80
+  serviceAccountName: "hobbyfarm-scheduledevent"
 setting:
   image: hobbyfarm/setting-service:v3.1.0
   replicas: 1
