@@ -39,20 +39,26 @@ accesscode:
   serviceAccountName: "hobbyfarm-accesscode"
 authn:
   image: hobbyfarm/authn-service:v3.1.0
-  serviceAccountName: "hobbyfarm-authn"
   replicas: 1
   logLevel: "0"
   apiPort: 80
+  serviceAccountName: "hobbyfarm-authn"
 authr:
   image: hobbyfarm/authr-service:v3.1.0
-  serviceAccountName: "hobbyfarm-authr"
   replicas: 1
   logLevel: "0"
+  serviceAccountName: "hobbyfarm-authr"
 conversion:
   image: hobbyfarm/conversion-service:v3.1.0
   containerPort: 444
   servicePort: 443  # needs to remain 443, see https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#deploy-the-conversion-webhook-servicev2
   serviceAccountName: "hobbyfarm-conversion"
+course:
+  image: #tbd
+  replicas: 1
+  logLevel: "0"
+  apiPort: 80
+  serviceAccountName: "hobbyfarm-course"
 rbac:
   image: hobbyfarm/rbac-service:v3.1.0
   replicas: 1
@@ -61,10 +67,10 @@ rbac:
   serviceAccountName: "hobbyfarm-rbac"
 setting:
   image: hobbyfarm/setting-service:v3.1.0
-  serviceAccountName: "hobbyfarm-setting"
   replicas: 1
   logLevel: "0"
   apiPort: 80
+  serviceAccountName: "hobbyfarm-setting"
 user:
   image: hobbyfarm/user-service:v3.1.0
   replicas: 1
@@ -76,10 +82,10 @@ user:
 gargantua:
   image: hobbyfarm/gargantua:v3.1.0
   logLevel: "0"
-  dynamicBaseNamePrefix: "dynamic"
-  scheduledBaseNamePrefix: "scheduled"
-  serviceAccountName: "hobbyfarm-gargantua"
+  dynamicBaseNamePrefix: "dynamic" # @TODO: sessionsvc and dbconfigsvc need this -> could be done under "general"
+  scheduledBaseNamePrefix: "scheduled" # @TODO: sessionsvc and scheduledeventsvc need this -> could be done under "general"
   apiPort: 80
+  serviceAccountName: "hobbyfarm-gargantua"
 
 # Use guacamole to provision windows VMs (optional)
 # guac:
