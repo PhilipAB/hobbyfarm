@@ -21,9 +21,9 @@
 -}}
 {{- $altNames := list -}}
 {{- range $service := $services -}}
-    {{- $altNames = append $altNames (printf "%s.%s.%s.%s.%s" (printf "%s-service-grpc" $service) .Release.Namespace "svc" "cluster" "local") -}}
-    {{- $altNames = append $altNames (printf "%s.%s.%s" (printf "%s-service-grpc" $service) .Release.Namespace "svc") -}}
-    {{- $altNames = append $altNames (printf "%s.%s" (printf "%s-service-grpc" $service) .Release.Namespace) -}}
+    {{- $altNames = append $altNames (printf "%s.%s.%s.%s.%s" (printf "%s-service-grpc" $service) $.Release.Namespace "svc" "cluster" "local") -}}
+    {{- $altNames = append $altNames (printf "%s.%s.%s" (printf "%s-service-grpc" $service) $.Release.Namespace "svc") -}}
+    {{- $altNames = append $altNames (printf "%s.%s" (printf "%s-service-grpc" $service) $.Release.Namespace) -}}
 {{- end -}}
 {{- $ca := genCA "hf-ca" 3650 -}}
 {{- $cert := genSignedCert "hobbyfarm.svc.cluster.local" nil $altNames 3650 $ca -}}
