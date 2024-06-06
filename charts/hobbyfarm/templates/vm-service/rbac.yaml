@@ -30,7 +30,7 @@ rules:
     resources: ["*"]
     verbs: ["*"]
   - apiGroups: ["hobbyfarm.io"]
-    resources: ["virtualmachines"]
+    resources: ["virtualmachines", "virtualmachines/status"]
     verbs: ["*"]
   - apiGroups: ["apps"]
     resources: ["statefulsets"]
