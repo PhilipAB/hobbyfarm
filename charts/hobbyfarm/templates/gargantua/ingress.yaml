@@ -17,13 +17,6 @@ spec:
       http:
         paths:
         - pathType: Prefix
-          path: "/auth/scheduledevents"
-          backend:
-            service:
-              name: gargantua
-              port: 
-                number: 80
-        - pathType: Prefix
           path: "/auth"
           backend:
             service:
