@@ -15,15 +15,7 @@ data:
         "logo": {{ $.Values.ui.config.logo | quote }},
         "about": {
             "title": {{ $.Values.ui.config.about.title | default "" | quote }},
-            "body": {{ $.Values.ui.config.about.body | default "" | quote }},
-            "buttons": [
-            {{- range $index, $val := $.Values.ui.config.about.buttons }}
-            {
-                {{ "title" | quote | indent 4}}: {{ $val.title | quote }},
-                {{ "url" | quote | indent 4}}: {{ $val.url | quote }}
-            }{{ if ne (add1 $index) (len $.Values.ui.config.about.buttons) }},{{ end }}
-            {{- end }}
-            ]
+            "body": {{ $.Values.ui.config.about.body | default "" | quote }}
         }
     }
   {{- if $.Values.ui.custom }}
