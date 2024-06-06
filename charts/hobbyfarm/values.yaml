@@ -95,6 +95,13 @@ scheduledevent:
   logLevel: "0"
   apiPort: 80
   serviceAccountName: "hobbyfarm-scheduledevent"
+session:
+  image: #tbd
+  replicas: 1
+  controllerWorkerThreadCount: 1
+  logLevel: "0"
+  apiPort: 80
+  serviceAccountName: "hobbyfarm-session"
 setting:
   image: hobbyfarm/setting-service:v3.1.0
   replicas: 1
@@ -112,14 +119,12 @@ user:
 gargantua:
   image: hobbyfarm/gargantua:v3.1.0
   logLevel: "0"
-  dynamicBaseNamePrefix: "dynamic" # @TODO: sessionsvc and dbconfigsvc need this -> could be done under "general"
-  scheduledBaseNamePrefix: "scheduled" # @TODO: sessionsvc and scheduledeventsvc need this -> could be done under "general"
   apiPort: 80
   serviceAccountName: "hobbyfarm-gargantua"
 
 general:
-  dynamicBaseNamePrefix: "dynamic"
-  scheduledBaseNamePrefix: "scheduled"
+  dynamicBaseNamePrefix: "dynamic" # in use by dbconfig-service and session-service
+  scheduledBaseNamePrefix: "scheduled" # in use by scheduledevent-service and session-service
 
 # Use guacamole to provision windows VMs (optional)
 # guac:
