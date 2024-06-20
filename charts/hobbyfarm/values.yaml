@@ -173,6 +173,9 @@ general:
 # Use guacamole to provision windows VMs (optional)
 # guac:
 #   image: ***to be published***
+#   guacd:
+#     image: guacamole/guacd
+
 
 shell:
   replicas: 1
