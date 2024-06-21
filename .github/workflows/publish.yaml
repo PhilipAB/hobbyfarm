@@ -22,8 +22,10 @@ jobs:
         OWNER: ${{ github.repository_owner }}
         REPO: ${{ github.event.repository.name }}
         CR_TOKEN: ${{ secrets.CR_TOKEN }}
+        USER_ID: ${{ env.USER_ID }}
+        GROUP_ID: ${{ env.GROUP_ID }}
       run: |
-        docker run -w /app --entrypoint /bin/sh -v $PWD:/app quay.io/helmpack/chart-releaser:v1.6.1 -c "
+        docker run -w /app --entrypoint /bin/sh -v $PWD:/app quay.io/helmpack/chart-releaser:v1.6.1 -u $USER_ID:$GROUP_ID -c "
           git config --global --add safe.directory /app &&
           git config --global user.email 'action@github.com' &&
           git config --global user.name 'GitHub Action' &&
