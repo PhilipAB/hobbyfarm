@@ -29,9 +29,9 @@ jobs:
           git config --global --add safe.directory /app &&
           git config --global user.email 'action@github.com' &&
           git config --global user.name 'GitHub Action' &&
-          cr package /app/charts/hobbyfarm --package-path /app/.cr-release-packages &&
-          cr upload --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --token $CR_TOKEN --push &&
-          cr index --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --index-path /app/docs/index.yaml --pages-index-path /app/docs/index.yaml --push --pages-branch master
+          cr package /app/charts/hobbyfarm --package-path /app/dir &&
+          cr upload --owner $OWNER --git-repo $REPO --package-path /app/dir --token $CR_TOKEN --push &&
+          cr index --owner $OWNER --git-repo $REPO --package-path /app/dir --index-path /app/docs/index.yaml --push --pages-branch master
         "
     # - name: commit updated index.yaml
     #   run: |
