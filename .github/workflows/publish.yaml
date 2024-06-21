@@ -17,12 +17,6 @@ jobs:
         fetch-depth: 2
     - name: check if version was bumped
       run: git diff HEAD~1 charts/hobbyfarm/Chart.yaml | grep 'version:'
-    - name: Grant access to .git/objects
-      run: |
-        cd .git/objects
-        ls -al
-        sudo chown -R ${{ env.USER_ID }}:${{ env.GROUP_ID }} *
-        cd ../..
     - name: package and release charts
       env:
         OWNER: ${{ github.repository_owner }}
@@ -39,12 +33,12 @@ jobs:
           cr upload --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --token $CR_TOKEN --push &&
           cr index --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --index-path /app/docs/index.yaml --push --pages-branch master
         "
-    - name: commit updated index.yaml
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git commit -m "update index.yaml" -a
-    - name: push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+    # - name: commit updated index.yaml
+    #   run: |
+    #     git config --local user.email "action@github.com"
+    #     git config --local user.name "GitHub Action"
+    #     git commit -m "update index.yaml" -a
+    # - name: push changes
+    #   uses: ad-m/github-push-action@master
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
