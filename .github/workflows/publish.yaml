@@ -17,9 +17,9 @@ jobs:
         fetch-depth: 2
     - name: check if version was bumped
       run: git diff HEAD~1 charts/hobbyfarm/Chart.yaml | grep 'version:'
-    - name: debug .git directory
+    - name: configure safe directory
       run: |
-        ls -la $PWD/.git
+        git config --global --add safe.directory /app
     - name: package and release charts
       env:
         OWNER: ${{ github.repository_owner }}
