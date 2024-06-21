@@ -23,7 +23,7 @@ jobs:
         REPO=${GITHUB_REPOSITORY#*/}
         docker run -v $PWD:/app alpine/helm:3.0.0 package /app/charts/hobbyfarm -d /app/dist
         docker run -v $PWD:/app quay.io/helmpack/chart-releaser:v1.6.1 upload --owner $OWNER --git-repo $REPO --package-path /app/dist --token ${{ secrets.CR_TOKEN }}
-        docker run -v $PWD:/app quay.io/helmpack/chart-releaser:v1.6.1 index  --owner $OWNER --git-repo $REPO --package-path /app/dist --charts-repo https://$OWNER.github.io/$REPO --index-path /app/docs/index.yaml
+        docker run -v $PWD:/app quay.io/helmpack/chart-releaser:v1.6.1 index  --owner $OWNER --git-repo $REPO --package-path /app/dist --index-path /app/docs/index.yaml
     - name: commit updated index.yaml
       run: |
         git config --local user.email "action@github.com"
