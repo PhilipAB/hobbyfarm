@@ -31,7 +31,7 @@ jobs:
           git config --global user.name 'GitHub Action' &&
           cr package /app/charts/hobbyfarm --package-path /app/.cr-release-packages &&
           cr upload --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --token $CR_TOKEN --push &&
-          cr index --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --index-path /app/docs/index.yaml --push --pages-branch master
+          cr index --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --index-path /app/docs/index.yaml --pages-index-path /app/docs/index.yaml --push --pages-branch master
         "
     # - name: commit updated index.yaml
     #   run: |
