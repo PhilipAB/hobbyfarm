@@ -2,7 +2,7 @@ apiVersion: v2
 name: hobbyfarm
 description: Interactive coding platform in a browser
 type: application
-version: 4.0.0-beta.22
+version: 4.0.0-beta.23
 appVersion: 4.0.0
 maintainers:
   - name: ebauman
