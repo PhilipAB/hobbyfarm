@@ -21,9 +21,10 @@ jobs:
       run: |
         OWNER=${GITHUB_REPOSITORY%%/*}
         REPO=${GITHUB_REPOSITORY#*/}
-        docker run -v $PWD:/app quay.io/helmpack/chart-releaser:v1.6.1 package /app/charts/hobbyfarm
-        docker run -v $PWD:/app quay.io/helmpack/chart-releaser:v1.6.1 upload --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --token ${{ secrets.CR_TOKEN }}
-        docker run -v $PWD:/app quay.io/helmpack/chart-releaser:v1.6.1 index  --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --index-path /app/docs/index.yaml
+        docker run -v $PWD:/app quay.io/helmpack/chart-releaser:v1.6.1 /bin/sh -c "\
+        cr package /app/charts/hobbyfarm --package-path /app/.cr-release-packages && \
+        cr upload --owner $OWNER --git-repo $REPO --package-path .cr-release-packages/ --token ${{ secrets.CR_TOKEN }} && \
+        cr index  --owner $OWNER --git-repo $REPO --package-path .cr-release-packages/ --index-path /app/docs/index.yaml"
     - name: commit updated index.yaml
       run: |
         git config --local user.email "action@github.com"
