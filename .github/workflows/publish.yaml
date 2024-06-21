@@ -26,9 +26,9 @@ jobs:
         REPO: ${{ github.event.repository.name }}
         CR_TOKEN: ${{ secrets.CR_TOKEN }}
       run: |
-        docker run -v $PWD:/app -v $PWD/.git:/app/.git quay.io/helmpack/chart-releaser:v1.6.1 package /app/charts/hobbyfarm --package-path /app/.cr-release-packages
-        docker run -v $PWD:/app -v $PWD/.git:/app/.git quay.io/helmpack/chart-releaser:v1.6.1 upload --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --token $CR_TOKEN
-        docker run -v $PWD:/app -v $PWD/.git:/app/.git --workdir /app quay.io/helmpack/chart-releaser:v1.6.1 index  --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --index-path /app/docs/index.yaml
+        docker run -v $PWD:/app --workdir /app quay.io/helmpack/chart-releaser:v1.6.1 package /app/charts/hobbyfarm --package-path /app/.cr-release-packages
+        docker run -v $PWD:/app --workdir /app quay.io/helmpack/chart-releaser:v1.6.1 upload --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --token $CR_TOKEN
+        docker run -v $PWD:/app --workdir /app quay.io/helmpack/chart-releaser:v1.6.1 index  --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --index-path /app/docs/index.yaml
     - name: commit updated index.yaml
       run: |
         git config --local user.email "action@github.com"
