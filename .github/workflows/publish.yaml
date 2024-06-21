@@ -17,6 +17,9 @@ jobs:
         fetch-depth: 2
     - name: check if version was bumped
       run: git diff HEAD~1 charts/hobbyfarm/Chart.yaml | grep 'version:'
+    - name: Grant permission to update index.yaml in /doc directory
+      run: |
+        chmod -R 777 docs
     - name: package and release charts
       env:
         OWNER: ${{ github.repository_owner }}
