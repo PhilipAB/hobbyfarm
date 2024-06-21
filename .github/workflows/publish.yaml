@@ -29,8 +29,8 @@ jobs:
         docker run -w /app --entrypoint /bin/sh -v $PWD:/app quay.io/helmpack/chart-releaser:v1.6.1 -c "
           git config --global --add safe.directory /app &&
           cr package /app/charts/hobbyfarm --package-path /app/.cr-release-packages &&
-          cr upload --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --token $CR_TOKEN &&
-          cr index --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --index-path /app/docs/index.yaml
+          cr upload --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --token $CR_TOKEN --push &&
+          cr index --owner $OWNER --git-repo $REPO --package-path /app/.cr-release-packages --index-path /app/docs/index.yaml --push
         "
     - name: commit updated index.yaml
       run: |
