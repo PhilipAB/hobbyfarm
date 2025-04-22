@@ -117,6 +117,21 @@ spec:
               name: rbac-service
               port: 
                 number: {{ $.Values.rbac.apiPort }}
+        # quiz-service
+        - pathType: Prefix
+          path: "/a/quiz"
+          backend:
+            service:
+              name: quiz-service
+              port: 
+                number: {{ $.Values.quiz.apiPort }}
+        - pathType: Prefix
+          path: "/quiz"
+          backend:
+            service:
+              name: quiz-service
+              port: 
+                number: {{ $.Values.quiz.apiPort }}
         - pathType: Prefix
           path: "/a/rolebindings"
           backend:
