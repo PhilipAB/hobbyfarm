@@ -117,21 +117,6 @@ spec:
               name: rbac-service
               port: 
                 number: {{ $.Values.rbac.apiPort }}
-        # quiz-service
-        - pathType: Prefix
-          path: "/a/quiz"
-          backend:
-            service:
-              name: quiz-service
-              port: 
-                number: {{ $.Values.quiz.apiPort }}
-        - pathType: Prefix
-          path: "/quiz"
-          backend:
-            service:
-              name: quiz-service
-              port: 
-                number: {{ $.Values.quiz.apiPort }}
         - pathType: Prefix
           path: "/a/rolebindings"
           backend:
@@ -162,6 +147,14 @@ spec:
               name: environment-service
               port: 
                 number: {{ $.Values.environment.apiPort }}
+        # cost-service
+        - pathType: Prefix
+          path: "/a/cost"
+          backend:
+            service:
+              name: cost-service
+              port: 
+                number: {{ $.Values.cost.apiPort }}
         # course-service
         - pathType: Prefix
           path: "/a/course"
@@ -186,6 +179,13 @@ spec:
               port: 
                 number: {{ $.Values.authn.apiPort }}
         # Gargantua: All routes which are not covered by our microservices are routed to the legacy gargantua API server
+        - pathType: Prefix
+          path: "/score"
+          backend:
+            service:
+              name: score-service
+              port: 
+                number: 80
         - pathType: Prefix
           path: "/"
           backend:

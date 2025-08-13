@@ -1,52 +1,55 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rbac-service
+  name: cost-service
   namespace: {{ .Release.Namespace }}
 spec:
-  replicas: {{ $.Values.rbac.replicas }}
+  replicas: {{ $.Values.cost.replicas }}
   selector:
     matchLabels:
-      component: rbac-service
+      component: cost-service
   template:
     metadata:
       labels:
-        component: rbac-service
+        component: cost-service
       annotations:
         checksum/secret: {{ include (print $.Template.BasePath "/tls-certificates/grpc-secret.yaml") . | sha256sum }}
     spec:
-      serviceAccountName: {{ .Values.rbac.serviceAccountName }}
+      serviceAccountName: {{ .Values.cost.serviceAccountName }}
       containers:
-        - name: rbac-service
-          image: {{ $.Values.rbac.image }}
+        - name: cost-service
+          image: {{ $.Values.cost.image }}
           command: ["app"]
           args:
           - "-v=9"
           - "-logtostderr"
           - --enableReflection={{ .Values.general.enableReflection }}
-          - --installrbacroles={{ .Values.rbac.installRBACRoles }}
           env:
             - name: LOG_LEVEL
-              value: {{ $.Values.rbac.logLevel | quote }}
+              value: {{ $.Values.cost.logLevel | quote }}
             - name: HF_NAMESPACE
               value: {{ .Release.Namespace | quote }}
             - name: PORT
-              value: {{ .Values.rbac.apiPort | quote }}
+              value: {{ .Values.cost.apiPort | quote }}
             - name: GRPC_PORT
               value: "8080"
+            - name: STATEFULSET_NAME
+              value: "cost-service"
+            - name: CONTROLLER_THREAD_COUNT
+              value: {{ .Values.cost.controllerWorkerThreadCount | quote }}
           ports:
-          - containerPort: {{ .Values.rbac.apiPort }}
+          - containerPort: {{ .Values.cost.apiPort }}
           - containerPort: 8080
           volumeMounts:
-          - name: rbac-secret
+          - name: cost-secret
             mountPath: "/etc/ssl/certs/ca.crt"
             subPath: ca.crt
             readOnly: true
-          - name: rbac-secret
+          - name: cost-secret
             mountPath: "/etc/ssl/certs/tls.key"
             subPath: tls.key
             readOnly: true
-          - name: rbac-secret
+          - name: cost-secret
             mountPath: "/etc/ssl/certs/tls.crt"
             subPath: tls.crt
             readOnly: true
@@ -54,8 +57,12 @@ spec:
             mountPath: "/webhook-secret/ca.crt"
             subPath: ca.crt
             readOnly: true
+          - name: config
+            mountPath: "/etc/cost-config.json"
+            subPath: config.json
+            readOnly: true
       volumes:
-      - name: rbac-secret
+      - name: cost-secret
         secret:
           secretName: hobbyfarm-grpc-secret
           optional: false
@@ -63,3 +70,6 @@ spec:
         secret:
           secretName: hobbyfarm-webhook-secret
           optional: false
+      - name: config
+        configMap:
+          name: cost-config

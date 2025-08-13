@@ -1,52 +1,55 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rbac-service
+  name: vm-service
   namespace: {{ .Release.Namespace }}
 spec:
-  replicas: {{ $.Values.rbac.replicas }}
+  replicas: {{ $.Values.vm.replicas }}
   selector:
     matchLabels:
-      component: rbac-service
+      component: vm-service
   template:
     metadata:
       labels:
-        component: rbac-service
+        component: vm-service
       annotations:
         checksum/secret: {{ include (print $.Template.BasePath "/tls-certificates/grpc-secret.yaml") . | sha256sum }}
     spec:
-      serviceAccountName: {{ .Values.rbac.serviceAccountName }}
+      serviceAccountName: {{ .Values.vm.serviceAccountName }}
       containers:
-        - name: rbac-service
-          image: {{ $.Values.rbac.image }}
+        - name: vm-service
+          image: {{ $.Values.vm.image }}
           command: ["app"]
           args:
           - "-v=9"
           - "-logtostderr"
           - --enableReflection={{ .Values.general.enableReflection }}
-          - --installrbacroles={{ .Values.rbac.installRBACRoles }}
           env:
             - name: LOG_LEVEL
-              value: {{ $.Values.rbac.logLevel | quote }}
+              value: {{ $.Values.vm.logLevel | quote }}
             - name: HF_NAMESPACE
               value: {{ .Release.Namespace | quote }}
             - name: PORT
-              value: {{ .Values.rbac.apiPort | quote }}
+              value: {{ .Values.vm.apiPort | quote }}
             - name: GRPC_PORT
               value: "8080"
+            - name: STATEFULSET_NAME
+              value: "vm-service"
+            - name: CONTROLLER_THREAD_COUNT
+              value: {{ .Values.vm.controllerWorkerThreadCount | quote }}
           ports:
-          - containerPort: {{ .Values.rbac.apiPort }}
+          - containerPort: {{ .Values.vm.apiPort }}
           - containerPort: 8080
           volumeMounts:
-          - name: rbac-secret
+          - name: vm-secret
             mountPath: "/etc/ssl/certs/ca.crt"
             subPath: ca.crt
             readOnly: true
-          - name: rbac-secret
+          - name: vm-secret
             mountPath: "/etc/ssl/certs/tls.key"
             subPath: tls.key
             readOnly: true
-          - name: rbac-secret
+          - name: vm-secret
             mountPath: "/etc/ssl/certs/tls.crt"
             subPath: tls.crt
             readOnly: true
@@ -55,7 +58,7 @@ spec:
             subPath: ca.crt
             readOnly: true
       volumes:
-      - name: rbac-secret
+      - name: vm-secret
         secret:
           secretName: hobbyfarm-grpc-secret
           optional: false
