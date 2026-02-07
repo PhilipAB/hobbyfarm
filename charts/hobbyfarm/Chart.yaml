@@ -2,8 +2,8 @@ apiVersion: v2
 name: hobbyfarm
 description: Interactive coding platform in a browser
 type: application
-version: 3.3.0-rc.3
-appVersion: 3.3.0-rc.2
+version: 3.3.0-rc.4
+appVersion: 3.3.0-rc.4
 maintainers:
   - name: ebauman
     email: eamon@eamonbauman.com
