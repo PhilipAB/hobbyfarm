@@ -30,7 +30,7 @@ rules:
     resources: ["*"]
     verbs: ["*"]
   - apiGroups: ["hobbyfarm.io"]
-    resources: ["accesscodes", "onetimeaccesscodes"]
+    resources: ["accesscodes", "onetimeaccesscodes", "onetimeaccesscodes/status"]
     verbs: ["*"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
