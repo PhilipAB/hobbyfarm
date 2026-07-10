@@ -18,6 +18,7 @@
     "vmclaim"
     "vmset"
     "vmtemplate"
+    "quiz"
 -}}
 {{- $altNames := list -}}
 {{- range $service := $services -}}
